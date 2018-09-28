@@ -21,6 +21,7 @@ public class ListBucketMain {
         String resultFileDir = listBucketParams.getResultFileDir();
         int maxThreads = listBucketParams.getMaxThreads();
         int version = listBucketParams.getVersion();
+        boolean enabledEndFile = listBucketParams.getEnabledEndFile();
         boolean withParallel = listBucketParams.getWithParallel();
         int level = listBucketParams.getLevel();
         String process = listBucketParams.getProcess();
@@ -57,7 +58,10 @@ public class ListBucketMain {
 
         IBucketProcess listBucketMultiProcessor = new ListBucketProcess(auth, configuration, bucket, resultFileDir);
         try {
-            listBucketMultiProcessor.processBucketWithEndFile(iOssFileProcessor, version, maxThreads, withParallel, level, unitLen);
+            if (enabledEndFile)
+                listBucketMultiProcessor.processBucketWithEndFile(iOssFileProcessor, version, maxThreads, withParallel, level, unitLen);
+            else
+                listBucketMultiProcessor.processBucketWithPrefix(iOssFileProcessor, version, maxThreads, withParallel, level, unitLen);
         } catch (QiniuException e) {
             System.out.println(e.getMessage());
         } finally {
