@@ -66,7 +66,7 @@ public class ListBucketMain {
             else
                 listBucketProcessor.processBucketWithPrefix(iOssFileProcessor, version, maxThreads, withParallel, level, unitLen);
         } catch (QiniuException e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.code() + "\t" + e.error());
         } finally {
             if (iOssFileProcessor != null)
                 iOssFileProcessor.closeResource();
