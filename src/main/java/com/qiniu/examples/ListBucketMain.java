@@ -59,18 +59,18 @@ public class ListBucketMain {
                 break;
         }
 
-        IBucketProcess listBucketMultiProcessor = new ListBucketProcess(auth, configuration, bucket, resultFileDir);
+        IBucketProcess listBucketProcessor = new ListBucketProcess(auth, configuration, bucket, resultFileDir);
         try {
             if (enabledEndFile)
-                listBucketMultiProcessor.processBucketWithEndFile(iOssFileProcessor, version, maxThreads, withParallel, level, unitLen);
+                listBucketProcessor.processBucketWithEndFile(iOssFileProcessor, version, maxThreads, withParallel, level, unitLen);
             else
-                listBucketMultiProcessor.processBucketWithPrefix(iOssFileProcessor, version, maxThreads, withParallel, level, unitLen);
+                listBucketProcessor.processBucketWithPrefix(iOssFileProcessor, version, maxThreads, withParallel, level, unitLen);
         } catch (QiniuException e) {
             System.out.println(e.getMessage());
         } finally {
             if (iOssFileProcessor != null)
                 iOssFileProcessor.closeResource();
-            listBucketMultiProcessor.closeResource();
+            listBucketProcessor.closeResource();
         }
     }
 }
