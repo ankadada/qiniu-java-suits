@@ -11,6 +11,9 @@ public class ListBucketMain {
 
     public static void main(String[] args) throws Exception {
 
+        args = new String[]{"-ak=HQ43UXX9b_nRsVVUaziiF0LEMshgP1QGUQ_LOTBO", "-sk=9M55rAnkzRPRFQnjoRemQVPDEa1_jFuzjvgh1WlS",
+                "-bucket=video360", "-result-path=../result", "-max-threads=30", "-version=2", "-level=1", "-end-file=false",
+                "-parallel=true", "-unit-len=1000", "-process=type", "-type=0", "-date=2018-09-25", "-time=00:00:00", "-direction=0"};
         String configFile = ".qiniu.properties";
         boolean paramFromConfig = (args == null || args.length == 0);
         ListBucketParams listBucketParams = paramFromConfig ?
